@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="QLTAEntities-Web.config Connection String" description="QLTAEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.QLSP.csdl|res://*/Models.QLSP.ssdl|res://*/Models.QLSP.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-S7I5A9E\HOAINAM;Integrated Security=True;initial catalog=QLTA;user id=sa;password=023432657;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\2033210989_LeHoaiNam\\DoAnCNWeb_WebsiteCuaHangBanNuocMam\\WebSauce\\WebSauce\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='QLTAEntities']/@connectionString" />
+  </parameter>
+</parameters>

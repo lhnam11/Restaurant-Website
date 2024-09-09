@@ -1,0 +1,1283 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+<style>
+   
+body {
+    font-family: 'Poppins', sans-serif;
+    text-rendering: optimizeLegibility !important;
+    background: #f3f3f5;
+}
+
+
+
+img {
+    max-width: 100%;
+}
+
+.site-header {
+    position: fixed;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: 0.5s;
+    border-bottom: 1px solid transparent;
+}
+
+.site-header.sticky_head {
+    background: rgb(255 255 255 / 80%);
+    padding: 20px 0;
+    border-color: #f2f2f2;
+    backdrop-filter: blur(20px);
+}
+
+.main-navigation {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.main-navigation .menu li {
+    display: inline-block;
+    position: relative;
+    margin: 0 6px;
+}
+
+.main-navigation .menu li:first-child {
+    margin-left: 0;
+}
+
+.main-navigation .menu li:last-child {
+    margin-right: 0;
+}
+
+
+
+.banner-img-text {
+    max-width: 400px;
+}
+
+.banner-shape-1 img {
+    position: absolute;
+    left: 85%;
+    top: 60px;
+    max-width: 150px;
+    pointer-events: none;
+    filter: blur(3px);
+}
+
+.banner-shape-2 {
+    top: auto !important;
+    bottom: 0;
+}
+
+.banner-shape-2 img {
+    position: absolute;
+    bottom: 0;
+    right: 82% !important;
+    max-width: 410px;
+    pointer-events: none;
+    filter: blur(3px);
+}
+
+.sec-wp {
+    position: relative;
+    z-index: 4;
+}
+
+.h1-title {
+    font-size: 90px;
+    line-height: 108px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    font-weight: 900;
+}
+
+.h1-title span {
+    color: #ff8243;
+    background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
+    background-size: 100% 15px;
+    background-position: 0 90%;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #0d0d25;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+}
+
+p {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.sec-btn {
+    min-width: 120px;
+    min-height: 58px;
+    background: #f3f3f5;
+    box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    color: #0d0d25;
+    text-transform: capitalize;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    outline: none !important;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    padding: 6px 30px;
+}
+
+.sec-btn:hover {
+    border-color: #0d0d25;
+    box-shadow: inset 9px 9px 12px #cccccc, inset -9px -9px 12px #ffffff;
+    color: #0d0d25;
+}
+
+/* ******************** */
+
+.brands-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -15px;
+}
+
+.brands-box {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brands-box:hover {
+    filter: brightness(0.3);
+    opacity: 0.9;
+}
+
+.brand-title .h5-title {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+/* ******************** */
+
+.section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.sec-sub-title {
+    text-transform: uppercase;
+    display: inline-block;
+    background: #f3f3f5;
+    box-shadow: 9px 9px 12px #e4e4e4, -9px -9px 12px #ffffff;
+    padding: 3px 20px;
+    border-radius: 60px;
+    color: #ff8243;
+    font-size: 14px;
+}
+
+.h2-title {
+    font-size: 46px;
+    line-height: 56px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.h2-title span, .h3-title span, .h4-title span, .h5-title span, .sub-title span {
+    display: block;
+}
+
+.about-video-img {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 55vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    box-shadow: 0 0 20px rgb(36 39 37 / 30%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn {
+    width: 90px;
+    height: 90px;
+    background: #f3f3f5;
+    box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+    padding-left: 4px;
+    padding-top: 4px;
+    font-size: 40px;
+}
+
+.play-btn:hover {
+    box-shadow: inset 9px 9px 12px #cccccc, inset -9px -9px 12px #ffffff;
+}
+
+.play-btn-wp {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-btn-wp span {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #bfbfbf;
+}
+
+/* ****** scrollbar design ******** */
+
+
+/* **************** */
+
+.repeat-img {
+    background-size: contain;
+    background-repeat: repeat;
+}
+
+.menu-tab-wp {
+    margin-bottom: 80px;
+}
+
+.menu-tab ul {
+    padding: 10px;
+    display: inline-block;
+    border-radius: 60px;
+    background: linear-gradient(145deg, #ececec, #ffffff);
+    box-shadow: 28px 28px 55px #d4d4d4, -28px -28px 55px #ffffff;
+    position: relative;
+    z-index: 2;
+}
+
+.menu-tab ul li, .menu-tab ul .filter-active {
+    display: inline-flex;
+    text-transform: capitalize;
+    font-size: 18px;
+    line-height: normal;
+    cursor: pointer;
+    padding: 10px 26px;
+    border-radius: 30px;
+    transition: 0.3s;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-active {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    min-height: 50px;
+    z-index: -1;
+}
+
+.menu-tab ul li img {
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+}
+
+.menu-tab ul .filter-active {
+    color: #ffffff;
+    background: linear-gradient(145deg, #e3a92b, #ffc933);
+}
+
+.menu-list-row .bydefault_show .dish-box-wp {
+    display: inline-block !important;
+}
+
+.dish-box-wp {
+    display: none;
+}
+
+.dish-box {
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ececec, #ffffff);
+    box-shadow: 28px 28px 45px #d4d4d4, -28px -28px 45px #ffffff;
+    display: flow-root;
+    padding: 0 30px 40px;
+    padding-top: 0;
+    margin: 130px 0 30px;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+.dish-box:hover {
+    transform: scale(1.03);
+}
+
+.dist-img {
+    margin-top: -130px;
+    margin-bottom: 30px;
+}
+
+.dist-img img {
+    box-shadow: 28px 28px 45px #d4d4d4, -28px -28px 45px #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dish-rating {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.dish-title {
+    padding: 0 30px;
+}
+
+.dish-title .h3-title {
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: #0d0d25;
+    transition: 0.3s;
+    min-height: 76px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 900;
+}
+
+.dish-title p {
+    color: #bfbfbf;
+}
+
+.dish-info ul, .dist-bottom-row ul {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.dish-info ul li {
+    display: inline-block;
+    flex: 1;
+}
+
+.dish-info ul li:last-child {
+    text-align: right;
+    border-left: 2px solid rgb(204 204 204 / 30%);
+}
+
+.dist-bottom-row ul li:last-child {
+    text-align: right;
+}
+
+.dish-info ul li p {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-bottom: 2px;
+    font-weight: 300;
+}
+
+.dish-info ul li b {
+    font-weight: 600;
+}
+
+.dish-info, .dist-bottom-row {
+    padding: 0 30px;
+}
+
+.dish-info {
+    border-bottom: 2px solid rgb(204 204 204 / 30%);
+    margin: 30px 0 30px;
+    padding-bottom: 30px;
+}
+
+.dist-bottom-row ul li {
+    display: flex;
+    align-items: center;
+}
+
+.dist-bottom-row ul li b {
+    font-size: 30px;
+}
+
+.dish-add-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    transition: 0.3s;
+    background: linear-gradient(145deg, #ffc954, #ffbc00);
+    box-shadow: inset 4px 4px 8px #d6a029, inset -4px -4px 8px #ffd837;
+}
+
+.dish-add-btn i {
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.dish-add-btn:hover {
+    background: linear-gradient(145deg, #e3a92b, #ffc933);
+}
+
+/* ************ */
+
+.xxl-title {
+    text-transform: capitalize;
+    font-size: 52px;
+    line-height: 72px;
+    margin-bottom: 30px;
+}
+
+/* ****************** */
+
+.book-table {
+    overflow: hidden;
+}
+
+.book-table-shape img {
+    position: absolute;
+    top: -10px;
+    right: 73%;
+    width: 540px;
+}
+
+.book-table-shape.book-table-shape2 img {
+    left: 74%;
+    transform: scale(-1, 1);
+}
+
+.book-table-info {
+    margin: 30px 0 20px;
+}
+
+.table-title {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.table-title p {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0;
+}
+
+.call-now {
+    border-left: 3px dotted rgb(13 13 37 /50%);
+    border-right: 3px dotted rgb(13 13 37 /50%);
+    padding: 15px 0;
+}
+
+.call-now i {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 26px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    background: #f3f3f5;
+    box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+    color: #ff8243;
+}
+
+.call-now a {
+    font-size: 32px;
+    font-weight: 500;
+    color: #0d0d25;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+.call-now a:hover, .contact-info a:hover {
+    color: #fcbc30;
+}
+
+#gallery {
+    padding-top: 120px;
+}
+
+.book-table-img {
+    height: 70vh;
+    min-height: 500px;
+    border-radius: 30px;
+}
+
+.back-img {
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    display: none;
+}
+
+.swiper-button-wp {
+    position: relative;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    position: unset;
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    font-size: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+    color: #0d0d25;
+    background: #ffffff;
+    box-shadow: -20px 20px 60px #d4d4d4, 20px -20px 60px #ffffff;
+    padding-top: 1px;
+    padding-right: 2px;
+    transition: 0.3s;
+}
+
+.swiper-button-next {
+    box-shadow: 20px 20px 60px #d4d4d4, -20px -20px 60px #ffffff;
+    padding-left: 3px;
+}
+
+.swiper-button-prev:hover {
+    box-shadow: inset 5px 5px 20px #d4d4d4, inset -5px -5px 20px #ffffff;
+    color: #fcbc30;
+}
+
+.swiper-button-next:hover {
+    box-shadow: inset -5px 5px 20px #d4d4d4, inset 5px -5px 20px #ffffff;
+    color: #fcbc30;
+}
+
+.swiper-pagination {
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 60px;
+    background: linear-gradient(145deg, #ececec, #ffffff);
+    box-shadow: 25px 28px 55px #d4d4d4, -28px -28px 55px #ffffff;
+    max-width: fit-content;
+    left: 50% !important;
+    transform: translate(-50%, 0);
+    bottom: 0 !important;
+    color: #000;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0px 10px !important;
+    border-radius: 10px;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+.swiper-pagination-bullet-active {
+    background: #fcbc30;
+    width: 30px;
+}
+
+/* *************** */
+
+.team-slider {
+    position: relative;
+}
+
+.team-box {
+    padding: 20px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ececec, #ffffff);
+    box-shadow: 28px 28px 45px #e6e6e6, -28px -28px 45px #ffffff;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+.team-box:hover {
+    transform: scale(1.03);
+}
+
+.team-img {
+    width: 100%;
+    height: 480px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 9px 9px 18px rgb(194 194 194 /0.5), -9px -9px 18px rgb(255 255 255 / 0.5);
+}
+
+.team-box .h3-title {
+    text-transform: capitalize;
+    color: #0d0d25;
+    font-weight: 600;
+}
+
+.social-icon {
+    margin: 15px 0px 10px;
+}
+
+.social-icon ul li {
+    display: inline-block;
+    margin: 0 6px;
+}
+
+.social-icon ul li:last-child {
+    margin-right: 0;
+}
+
+.social-icon ul li:first-child {
+    margin-left: 0;
+}
+
+.social-icon ul li a {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 8px #d0d0d0, -4px -4px 8px #ffffff;
+    color: #0d0d25;
+    font-size: 19px;
+}
+
+.social-icon ul li a:hover {
+    background: #ff8243;
+}
+
+.social-icon ul li a:hover i {
+    color: #ffffff !important;
+}
+
+/* *************** */
+
+.testimonials-img {
+    position: relative;
+}
+
+.testimonials-img img {
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    width: calc(100% + 5vw);
+    max-width: initial;
+}
+
+.testimonials-box {
+    display: flow-root;
+    position: relative;
+    padding: 30px;
+    padding-top: 0;
+    border-radius: 30px;
+    margin: 50px 0 30px;
+    background: linear-gradient(145deg, #ececec, #ffffff);
+    box-shadow: 28px 28px 45px #e6e6e6, -28px -28px 45px #ffffff;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+}
+
+.testimonials-box:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.testimonial-box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.testimonials-box-img {
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 50%;
+    margin-top: -50px;
+    box-shadow: 10px 10px 60px #d4d4d4;
+}
+
+.testimonials-box-text .h3-title {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.testimonials-box-text p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.star-rating-wp {
+    display: block;
+}
+
+.star-rating {
+    font-size: 22px;
+    position: relative;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.star-rating::before {
+    content: "\f005\f005\f005\f005\f005";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #c8c8c8;
+    filter: drop-shadow(0 0.6rem 0.3rem rgba(0, 0, 0, 0.05));
+    letter-spacing: 4px;
+}
+
+.star-rating__fill {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    animation: fill-star 2s ease-in-out;
+}
+
+.star-rating__fill::after {
+    content: "\f005\f005\f005\f005\f005";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #ff8243;
+    letter-spacing: 4px;
+}
+
+
+/* *********** */
+
+.faq-row {
+    column-count: 3;
+    margin: 0 -5px;
+}
+
+.faq-box {
+    border: 1px solid #bfbfbf;
+    border-radius: 30px;
+    background-image: linear-gradient(145deg, #e4e4e4, #ffffff);
+    break-inside: avoid;
+    margin: 0 5px 30px;
+    box-shadow: 10px 10px 30px rgb(207 207 208 / 20%), -10px -10px 30px rgb(255 255 255 / 90%);
+}
+
+.faq-box .h4-title {
+    padding: 16px 30px;
+    border-bottom: 1px solid #bfbfbf;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.faq-box p {
+    padding: 8px 30px 20px;
+    margin: 0;
+}
+
+/* *************** */
+
+.blog-text .h4-title {
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 900;
+    font-family: "playfair Display";
+    color: #0d0d25;
+    transition: 0.3s;
+}
+
+.blog-text .h4-title:hover {
+    color: #ff8243;
+}
+
+.blog-date {
+    padding: 5px 15px;
+    background: #f8f9fa;
+    box-shadow: inset 5px 5px 10px #e2e2e2, inset -5px -5px 10px #e8e8e8;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.blog-img {
+    width: 100%;
+    height: 280px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.blog-box {
+    padding: 30px 25px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ececec, #fdfdfd);
+    box-shadow: 30px 30px 50px #dcdcdc, -30px -30px 50px #ffffff;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+    margin-bottom: 30px;
+}
+
+.blog-box:hover {
+    transform: scale(1.03);
+}
+
+/* ************************ */
+
+.newsletter-box {
+    padding: 60px;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-form {
+    margin-top: 20px;
+    position: relative;
+}
+
+.newsletter-form button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.newsletter-form .form-input {
+    height: 68px;
+    border-radius: 60px;
+    padding: 0 150px 0 40px;
+    background: linear-gradient(-145deg, #e4e4e4, #f9f9f9);
+}
+
+.newsletter-box-text {
+    padding: 0 60px;
+    color: #ffffff;
+}
+
+.newsletter-box-text .h2-title {
+    color: #ffffff;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #f8f9fa;
+    opacity: 0.96;
+}
+
+.dark-overlay {
+    background: #0d0d25;
+    opacity: 0.5;
+}
+
+.sec-btn.primary-btn {
+    background: linear-gradient(145deg, #e26a2c, #ff8243);
+    color: #ffff;
+    border: none;
+    box-shadow: 4px 4px 8px #9e9e9e, -4px -4px 8px #ffffff;
+}
+
+.sec-btn.primary-btn:hover {
+    background: linear-gradient(145deg, #0c0c21, #0e0e28);
+}
+
+/* ***************** footer ****************** */
+
+.top-footer, .bottom-footer {
+    border-top: 1px solid rgb(204 204 204 / 40%);
+    position: relative;
+}
+
+.footer-logo {
+    margin-bottom: 30px;
+}
+
+.footer-info .social-icon {
+    margin-top: 20px;
+}
+
+.footer-flex-box {
+    display: flex;
+    margin: 0 -10px;
+}
+
+.footer-flex-box>div {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.footer-flex-box .h3-title {
+    text-transform: capitalize;
+    margin-bottom: 23px;
+}
+
+.footer-menu ul li a {
+    color: #0d0d25;
+    transition: 0.3s;
+    text-transform: capitalize;
+}
+
+.footer-menu ul li a:hover, .footer-menu ul li .footer-active-menu {
+    color: #ff8243;
+}
+
+.footer-menu ul li {
+    margin-bottom: 8px;
+}
+
+.footer-table-info ul li {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.uil-clocl {
+    font-size: 17px;
+}
+
+.copyright-text {
+    padding: 20px 0;
+}
+
+.copyright-text p {
+    margin: 0;
+}
+
+.name {
+    color: #ff8243;
+    font-weight: bold;
+}
+
+.scrolltop {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #f3f3f5;
+    box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+    color: #ff8243;
+    font-size: 26px;
+    transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+    border: none;
+}
+
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <!-- for icons  -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- for swiper slider  -->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+    <!-- fancy box  -->
+    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="avs.css">
+</head>
+
+<body class="body-fixed">
+
+
+    <div id="viewport">
+        <div id="js-scroll-content">
+          <section class="testimonials section bg-light">
+                <div class="sec-wp">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="sec-title text-center mb-5">
+                                    <p class="sec-sub-title mb-3">What they say</p>
+                                    <h2 class="h2-title">What our customers <span>say about us</span></h2>
+                                    <div class="sec-title-shape mb-4">
+                                        <img src="assets/images/title-shape.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="testimonials-img">
+                                    <img src="~/Images/testimonial-img.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                     style="background-image: url(/Images/t1.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:85%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Nilay Hirpara
+                                                </h3>
+                                                <p>
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+                                                    quisquam.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                     style="background-image: url(/Images/t2.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:80%"><i></i></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Ravi Kumawat
+                                                </h3>
+                                                <p>
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+                                                    quisquam.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                     style="background-image: url(/Images/t3.jpg); ">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:89%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Navnit Kumar
+                                                </h3>
+                                                <p>
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+                                                    quisquam.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                     style="background-image: url(/Images/t4.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:100%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Somyadeep Bhowmik
+                                                </h3>
+                                                <p>
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+                                                    quisquam.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-sec section-repeat-img" style="background-image: url(assets/images/faq-bg.png);">
+            </section>
+
+
+            <div class="bg-pattern bg-light repeat-img"
+                 style="background-image: url(/images/blog-pattern-bg.png);">
+                <section class="blog-sec section" id="blog">
+                    <div class="sec-wp">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="sec-title text-center mb-5">
+                                        <p class="sec-sub-title mb-3">Our blog</p>
+                                        <h2 class="h2-title">Latest Publications</span></h2>
+                                        <div class="sec-title-shape mb-4">
+                                            <img src="assets/images/title-shape.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="blog-box">
+                                        <div class="blog-img back-img"
+                                             style="background-image: url(/Images/blog1.jpg);"></div>
+                                        <div class="blog-text">
+                                            <p class="blog-date">September.15.2021</p>
+                                            <a href="#" class="h4-title">Energy Drink which you can make at home.</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
+                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
+                                                blanditiis amet ad.
+                                            </p>
+                                            <a href="#" class="sec-btn">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="blog-box">
+                                        <div class="blog-img back-img"
+                                             style="background-image: url(/Images/blog2.jpg);"></div>
+                                        <div class="blog-text">
+                                            <p class="blog-date">October.15.2021</p>
+                                            <a href="#" class="h4-title">Fresh Veggie and rice combo for dinner.</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
+                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
+                                                blanditiis amet ad.
+                                            </p>
+                                            <a href="#" class="sec-btn">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="blog-box">
+                                        <div class="blog-img back-img"
+                                             style="background-image: url(/Images/blog3.jpg);"></div>
+                                        <div class="blog-text">
+                                            <p class="blog-date">November.15.2021</p>
+                                            <a href="#" class="h4-title">Chicken burger with double nuggets</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
+                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
+                                                blanditiis amet ad.
+                                            </p>
+                                            <a href="#" class="sec-btn">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- jquery  -->
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+
+    <!-- fontawesome  -->
+    <script src="assets/js/font-awesome.min.js"></script>
+
+    <!-- swiper slider  -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+
+    <!-- mixitup -- filter  -->
+    <script src="assets/js/jquery.mixitup.min.js"></script>
+
+    <!-- fancy box  -->
+    <script src="assets/js/jquery.fancybox.min.js"></script>
+
+    <!-- parallax  -->
+    <script src="assets/js/parallax.min.js"></script>
+
+    <!-- gsap  -->
+    <script src="assets/js/gsap.min.js"></script>
+
+    <!-- scroll trigger  -->
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <!-- scroll to plugin  -->
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <!-- rellax  -->
+    <!-- <script src="assets/js/rellax.min.js"></script> -->
+    <!-- <script src="assets/js/rellax-custom.js"></script> -->
+    <!-- smooth scroll  -->
+    <script src="assets/js/smooth-scroll.js"></script>
+    <!-- custom js  -->
+    <script src="main.js"></script>
+
+</body>
+
+</html>

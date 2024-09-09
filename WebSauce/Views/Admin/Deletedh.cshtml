@@ -1,0 +1,78 @@
+﻿@model WebSauce.Models.DONHANG
+
+@{
+    ViewBag.Title = "Delete Don Hang";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+<h3>Bạn có chắc muốn xóa đơn hàng  này?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Model => Model.MADH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MADH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAKH)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KHACHHANG.TENKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.TENKH)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KHACHHANG.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.SDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KHACHHANG.DIACHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.DIACHI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYLAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYLAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TONGTIEN)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "laydsdonhang")
+        </div>
+    }
+</div>

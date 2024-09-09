@@ -1,0 +1,23 @@
+﻿@using WebSauce.Models;
+@model List<LOAISP>
+<ul class="list-group list-group-flush text-left border-dark">
+    <li class="list-group-item " style="background-color: #FF9209 ">
+        <a style="text-decoration: none; color: #FFD099; font-weight: bold">Menu món ăn</a>
+    </li>
+    @{
+        foreach (var item in Model)
+        {
+            <li class="list-group-item list-group-item-action">
+                <a href="@Url.Action("SanPhamTheoLoai","LoaiSanPham",new { @maloai=item.MALSP })" style="text-decoration:none;color:orange;font-weight:bold">
+                    @item.TENLSP
+                </a>
+            </li>
+        }
+        <li class="list-group-item">
+            <a style="text-decoration:none;color:white;font-weight:bold"></a>
+        </li>
+    }
+
+
+
+</ul>

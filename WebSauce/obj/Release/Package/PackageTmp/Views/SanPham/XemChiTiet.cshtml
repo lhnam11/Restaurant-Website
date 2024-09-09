@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+@using WebSauce.Models;
+@model SANPHAM
+<h2 class="mt-4">Chi Tiết Món ăn</h2>
+
+<div class="card border-dark p-3">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="@Url.Content("~/Images/" + Model.HINHANH)" class="img-fluid " style="width:100%;height:100%" alt="Product Image" />
+        </div>
+        <div class="col-md-6">
+            <table class="table table-borderless">
+                <tr>
+                    <td width="30%">Tên Sản Phẩm:</td>
+                    <td style="font-weight:bold;color:blue">@Model.TENSP</td>
+                </tr>
+                <tr>
+                    <td>Tên Loại:</td>
+                    <td style="color:blue">@Model.LOAISP.TENLSP</td>
+                </tr>
+                <tr>
+                    <td>Mô Tả:</td>
+                    <td class="text-justify">@Model.MOTA</td>
+                </tr>
+                <tr>
+                    <td>Giá:</td>
+                    <td style="font-weight:bold;color:red">@string.Format("{0}", @Model.DONGIA) VNĐ</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @msp = Model.MASP, @strUrl = Request.Url.ToString() })" class="btn btn-success">
+                            thêm vào giỏ hàng
+                        </a>
+                        <a href="@Url.Action("SanPhamPartial", "SanPham")" class="btn btn-success ml-2">
+                            Mua Tiếp
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

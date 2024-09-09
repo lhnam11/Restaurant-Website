@@ -1,0 +1,312 @@
+﻿package Chuong4;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Quanlysach {
+
+	private JFrame frame;
+	private JTextField txt_MaSach;
+	private JTextField txt_TenSach;
+	private JTextField txt_TacGia;
+	private JTextField txt_Loai;
+	private JTextField txt_TinhTrang;
+	private JButton btn_Luu;
+	private JButton btn_Huy;
+	private JButton btn_delete;
+	private JButton btn_Sua;
+	private JTable table;
+	private Connection connection;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Quanlysach window = new Quanlysach();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Quanlysach() {
+		initialize();
+		connectToDatabase();
+        fetchDataAndDisplay();
+
+	}
+	  private void connectToDatabase() {
+	        try {
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=QL_DOCGIA;encrypt=true;trustServerCertificate=true";
+	            String user = "sa";
+	            String pass = "123456";
+	            connection = DriverManager.getConnection(dbURL, user, pass);
+
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace();
+	        }
+
+	    }
+
+	    private void fetchDataAndDisplay() {
+	        try {
+	            String query = "SELECT MASH, TENSH, TACGIA, LOAI,TINHTRANG From SACH";
+	            PreparedStatement statement = connection.prepareStatement(query);
+	            ResultSet rs = statement.executeQuery();
+	            Vector<Vector<Object>> data = new Vector<>();
+	            while (rs.next()) {
+	                Vector<Object> row = new Vector<>();
+	                row.add(rs.getString("MASH"));
+	                row.add(rs.getString("TENSH"));
+	                row.add(rs.getString("TACGIA"));
+	                row.add(rs.getString("LOAI"));
+	                row.add(rs.getString("TINHTRANG"));
+	                
+	                data.add(row);
+
+	            }
+	            Vector<String> columnNames = new Vector<>();
+	            columnNames.add("Mã sách");
+	            columnNames.add("Tên sách");
+	            columnNames.add("Tác giả");
+	            columnNames.add("Loại ");
+	            columnNames.add("Tình trạng ");
+	            
+
+	            DefaultTableModel model = new DefaultTableModel(data, columnNames);
+
+	            // Set DefaultTableModel cho JTable
+	            table.setModel(model);
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+
+	        }
+
+	    }
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 459);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBounds(10, 57, 428, 99);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Mã sách:");
+		lblNewLabel.setBounds(10, 11, 48, 14);
+		panel.add(lblNewLabel);
+		
+		JLabel lblTnSch = new JLabel("Tên sách:");
+		lblTnSch.setBounds(10, 55, 48, 14);
+		panel.add(lblTnSch);
+		
+		txt_MaSach = new JTextField();
+		txt_MaSach.setBounds(68, 8, 73, 20);
+		panel.add(txt_MaSach);
+		txt_MaSach.setColumns(10);
+		
+		txt_TenSach = new JTextField();
+		txt_TenSach.setColumns(10);
+		txt_TenSach.setBounds(68, 52, 73, 20);
+		panel.add(txt_TenSach);
+		
+		JLabel lblTcGi = new JLabel("Tác giả:");
+		lblTcGi.setBounds(151, 11, 48, 14);
+		panel.add(lblTcGi);
+		
+		JLabel lblLoi = new JLabel("Loại:");
+		lblLoi.setBounds(151, 55, 48, 14);
+		panel.add(lblLoi);
+		
+		txt_TacGia = new JTextField();
+		txt_TacGia.setBounds(193, 8, 73, 20);
+		panel.add(txt_TacGia);
+		txt_TacGia.setColumns(10);
+		
+		txt_Loai = new JTextField();
+		txt_Loai.setBounds(193, 52, 73, 20);
+		panel.add(txt_Loai);
+		txt_Loai.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Tìm kiếm");
+		btnNewButton.setBounds(289, 51, 89, 23);
+		panel.add(btnNewButton);
+		
+		JLabel lblTnhTrng = new JLabel("Tình trạng:");
+		lblTnhTrng.setBounds(276, 11, 67, 14);
+		panel.add(lblTnhTrng);
+		
+		txt_TinhTrang = new JTextField();
+		txt_TinhTrang.setColumns(10);
+		txt_TinhTrang.setBounds(345, 8, 73, 20);
+		panel.add(txt_TinhTrang);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(42, 167, 351, 144);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				txt_MaSach.setText(table.getValueAt(selectedRow, 0).toString());
+	    		txt_TenSach.setText(table.getValueAt(selectedRow, 1).toString());
+	    		txt_TacGia.setText(table.getValueAt(selectedRow, 2).toString());
+	      		txt_Loai.setText(table.getValueAt(selectedRow, 3).toString());
+	      		txt_TinhTrang.setText(table.getValueAt(selectedRow, 4).toString());
+				if(selectedRow >= 0 )
+				{
+					txt_MaSach.setEnabled(false);
+					txt_TenSach.setEnabled(false);
+					txt_TacGia.setEnabled(false);
+					txt_Loai.setEnabled(false);
+					txt_TinhTrang.setEnabled(false);
+					
+					
+				}
+		
+				
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		JButton btn_Them = new JButton("Thêm ");
+		btn_Them.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    btn_Luu.setEnabled(true);
+			    btn_Huy.setEnabled(true);
+			    btn_delete.setEnabled(false);
+			    btn_Sua.setEnabled(false);
+				String masach = txt_MaSach.getText();
+				String tensach = txt_TenSach.getText();
+				String tacgia = txt_TacGia.getText();
+				String loai = txt_Loai.getText();
+				String tinhtrang = txt_TinhTrang.getText();
+				try {
+	    			String query = "INSERT INTO Sach(MASH,TENSH,TACGIA,LOAI,TINHTRANG) VALUES(?,?,?,?,?)";
+	    			PreparedStatement statement = connection.prepareStatement(query);
+	    			statement.setString(1, masach);
+	    			statement.setString(2,tensach);
+	    			statement.setString(3, tacgia);
+	    			statement.setString(4, loai);
+	    			statement.setString(5, tinhtrang);
+	    			int rowsInserted = statement.executeUpdate();
+	    			if(rowsInserted > 0 )
+	    			{
+	    				System.out.println("Dữ liệu đã được thêm vào cơ sở dữ liệu!");
+	    				fetchDataAndDisplay();
+	    			}
+	    		}catch(SQLException ex)
+	    		{
+	    			ex.printStackTrace();
+	    		}
+	    	
+	    	}
+			
+		});
+		btn_Them.setBounds(64, 336, 89, 23);
+		frame.getContentPane().add(btn_Them);
+		
+	    btn_Sua = new JButton("Sửa");
+		btn_Sua.setBounds(163, 336, 89, 23);
+		frame.getContentPane().add(btn_Sua);
+		
+		btn_delete = new JButton("Xóa");
+		btn_delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String masach = txt_MaSach.getText();
+				try {
+	    			String query = "DELETE FROM SACH WHERE MASH = ?";
+	    			PreparedStatement statement  = connection.prepareStatement(query);
+	    			statement.setString(1, masach);
+	    		    statement.executeUpdate();
+	    		    
+	    		}catch(SQLException ex)
+	    		{
+	    			ex.printStackTrace();
+	    		}
+	    		fetchDataAndDisplay();
+	    	}
+			
+		});
+		btn_delete.setBounds(264, 336, 89, 23);
+		frame.getContentPane().add(btn_delete);
+		
+	    btn_Luu = new JButton("Lưu");
+	    btn_Luu.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
+	    btn_Luu.setEnabled(false);
+		btn_Luu.setBounds(62, 370, 89, 23);
+		frame.getContentPane().add(btn_Luu);
+		
+	  btn_Huy = new JButton("Hủy ");
+	  btn_Huy.addActionListener(new ActionListener() {
+	  	public void actionPerformed(ActionEvent e) {
+			txt_MaSach.setText("");
+		    txt_TenSach.setText("");
+		    txt_TacGia.setText("");
+		    txt_Loai.setText("");
+		    txt_TinhTrang.setText("");
+		    btn_delete.setEnabled(true);
+		    btn_Sua.setEnabled(true);
+	  	}
+	  });
+		btn_Huy.setEnabled(false);
+		btn_Huy.setBounds(163, 370, 89, 23);
+		frame.getContentPane().add(btn_Huy);
+
+		
+		JButton btn_Thoat = new JButton("Thoát");
+		btn_Thoat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
+		btn_Thoat.setBounds(264, 370, 89, 23);
+		frame.getContentPane().add(btn_Thoat);
+	}
+}

@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        .main4 a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+            .main4 a:hover {
+                color: #ff8243;
+            }
+
+        .main3 a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+            .main3 a:hover {
+                color: #ff8243;
+            }
+
+        .main1 h3, .main2 h3, .main3 h3, .main4 h3 {
+            text-transform: capitalize;
+            margin-bottom: 23px;
+            font-size: 30px;
+            line-height: 36px;
+            color: #0d0d25;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+        }
+
+        .main1 .fa-facebook, .main1 .fa-instagram, .main1 .fa-linkedin, .main1 .fa-youtube {
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            box-shadow: 4px 4px 8px #d0d0d0, -4px -4px 8px #ffffff;
+            color: #ff8243;
+            font-size: 19px;
+            transition: all 0.3s ease;
+        }
+
+            .main1 .fa-facebook:hover {
+                background: linear-gradient(145deg, #3b5998, #192f5d);
+                color: #ffffff;
+                transform: scale(1.2);
+                box-shadow: 6px 6px 12px #d0d0d0, -6px -6px 12px #ffffff;
+            }
+
+            .main1 .fa-instagram:hover {
+                background: linear-gradient(145deg,#B799FF, red,orange);
+                color: #ffffff;
+                transform: rotate(45deg);
+                box-shadow: 6px 6px 12px #d0d0d0, -6px -6px 12px #ffffff;
+            }
+
+            .main1 .fa-linkedin:hover {
+                background: linear-gradient(145deg, #0077b5, skyblue);
+                color: #ffffff;
+                transform: scale(1.1);
+                filter: blur(0px);
+            }
+
+            .main1 .fa-youtube:hover {
+                background: linear-gradient(145deg, #ff0000, #ff5e00);
+                color: #ffffff;
+                transform: scale(1.1);
+                box-shadow: 6px 6px 12px #d0d0d0, -6px -6px 12px #ffffff;
+            }
+
+        .social-icons-container {
+            display: flex;
+            align-items: center;
+        }
+        .main1 a:hover,
+        .main2 a:hover,
+        .main3 a:hover,
+        .main4 a:hover {
+            color: #ff8243 !important; /* Change this to the desired orange color */
+        }
+
+    </style>
+</head>
+<body class="bg-light">
+    <div id="content" class="container-fluid">
+        <section id="section6" class="mt-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="main1">
+                        <h3 class="mb-4">Social link</h3>
+                        <p class="pl-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, tenetur.</p>
+                        <div class="social-icons-container d-flex">
+                            <p class="mr-2"><a href="#"><i class="fab fa-facebook"></i></a></p>
+                            <p class="mr-2"><a href="#"><i class="fab fa-instagram"></i></a></p>
+                            <p class="mr-2"><a href="#"><i class="fab fa-linkedin"></i></a></p>
+                            <p><a href="#"><i class="fab fa-youtube"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="main2">
+                        <h3 class="mb-4">Open Hours</h3>
+                        <p><i class="far fa-clock" style="color: #ff8243;"></i>&nbsp; Mon-Thurs: 9am - 22pm</p>
+                        <p><i class="far fa-clock" style="color: #ff8243;"></i>&nbsp; Fri-Sun: 11am - 22pm</p>
+                        <p><i class="fas fa-map-marker-alt" style="color: #ff8243;"></i>&nbsp; 140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú, TP. HCM</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.055957173488!2d106.61008491471898!3d10.782855892315342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752904b0a91a4d%3A0xc7d0946483d0fd4d!2zMTQwIEzDqiBUcuG7o25nIFTDonkgVGjGsMahbiwgVMOhbmggUGjGsOG7nW5nLCBUw6F5IFBoxrDhu51uZywgVGjDoCBO4buZLCBLaMOqIFZp4buHdCBOYW0!5e0!3m2!1sen!2s!4v1622284552427!5m2!1sen!2s" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="main3">
+                        <h3 class="mb-4">Links</h3>
+                        <p><a class="text-dark" href="#section1">Home</a></p>
+                        <p><a class="text-dark" href="#section2">Menu</a></p>
+                        <p><a class="text-dark" href="#section3">About</a></p>
+                        <p><a class="text-dark" href="#section6">Contact</a></p>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="main4">
+                        <h3 class="mb-4">Company</h3>
+                        <p><a class="text-dark" href="#section1">Terms & Conditions</a></p>
+                        <p><a class="text-dark" href="#section2">Privacy Policy</a></p>
+                        <p><a class="text-dark" href="#section3">Cookie Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <!-- Other scripts remain unchanged -->
+    <!-- ... -->
+</body>
+</html>
